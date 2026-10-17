@@ -6,7 +6,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { AnimatedNoise } from "@/components/animated-noise"
 import { ScrambleTextOnHover } from "@/components/scramble-text"
-import { SplitFlapAudioProvider, SplitFlapText } from "@/components/split-flap-text"
+import { BiomecHero } from "@/components/biomec-hero"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -61,25 +61,7 @@ export default function Page() {
         <div className="header-actions"><span className="coming">Soon in Delhi NCR</span><button className="button button-dark" onClick={() => scrollTo("start")}>Book an assessment <ArrowUpRight data-icon="inline-end" /></button><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X /> : <Menu />}</button></div>
       </header>
 
-      <section id="top" className="hero-section">
-        <AnimatedNoise opacity={0.035} />
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-copy">
-          <div className="hero-brand hero-reveal" aria-label="Biomec Fitness India">
-            <span className="hero-brand-name">BMF INDIA</span>
-            <span> / ASSESS · REBUILD · TRAIN · PERFORM</span>
-          </div>
-          <h1 className="hero-reveal hero-title" aria-label="Biomec Fitness">
-            <SplitFlapAudioProvider>
-              <SplitFlapText text="BIOMEC FITNESS" speed={18} className="hero-title-flap" />
-            </SplitFlapAudioProvider>
-          </h1>
-          <p className="hero-lede hero-reveal">An assessment-led fitness system connecting training, rehabilitation and performance in one clear pathway.</p>
-          <div className="hero-ctas hero-reveal"><button className="button button-cream" onClick={() => scrollTo("start")}><ScrambleTextOnHover text="Book an assessment" as="span" duration={0.6} /> <ArrowUpRight data-icon="inline-end" /></button><button className="text-link" onClick={() => scrollTo("system")}>Explore the BMF system <ArrowDownRight data-icon="inline-end" /></button></div>
-        </div>
-        <div className="hero-mark" aria-hidden="true"><span>CAN ONLY CHANGE</span><strong>WHAT<br />WE<br />MEASURE</strong><i /></div>
-        <div className="hero-foot"><span>01 — 06</span><span>Scroll to explore</span><span>DELHI NCR / 2026</span></div>
-      </section>
+      <BiomecHero onBookClick={() => scrollTo("start")} onExploreClick={() => scrollTo("system")} />
 
       <section id="system" className="section cream-section intro-section">
         <div className="section-label reveal"><span>01</span><span>The BMF difference</span></div>
@@ -106,7 +88,30 @@ export default function Page() {
 
       <section id="start" className="section start-section"><div className="start-card"><div className="section-label light-label"><span>START HERE</span><span>Coming soon to Delhi NCR</span></div><div className="start-layout"><div><h2>Tell us what you want to improve.<br /><em>We will guide the next step.</em></h2><p>Choose your route and the BMF team will respond with the most relevant starting point.</p></div>{submitted ? <div className="success-state"><span>✓</span><h3>Thank you.</h3><p>We have your enquiry and will guide you to the right next step.</p></div> : <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}><label>Name<input required placeholder="Your name" /></label><label>Email or mobile<input required placeholder="How can we reach you?" /></label><label>What brings you to BMF?<select defaultValue=""><option value="" disabled>Select a route</option><option>I want an assessment</option><option>I want to train</option><option>I need rehabilitation</option><option>I am an athlete or parent</option><option>I represent a school</option><option>I represent an organisation</option></select></label><label>Tell us more<textarea placeholder="Your goal, challenge or programme need" rows={3} /></label><button className="button button-cream" type="submit">Send enquiry <ArrowUpRight data-icon="inline-end" /></button></form>}</div></div></section>
 
-      <section className="section faq-section cream-section"><div className="section-label reveal"><span>FAQ</span><span>Questions, answered</span></div><div className="faq-list">{faqs.map(([q, a]) => <details className="faq-item reveal" key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
+      <section className="section faq-section cream-section">
+        <div className="section-label reveal"><span>FAQ</span><span>Questions, answered</span></div>
+        <div className="faq-layout">
+          <div className="faq-intro reveal">
+            <h2>Frequently asked<br /><em>questions.</em></h2>
+            <p>Everything you need to know about the BMF system, our diagnostic assessments, and getting started on the right pathway.</p>
+            <div className="faq-help-card">
+              <span className="faq-help-label">HAVE A SPECIFIC QUESTION?</span>
+              <p>Whether you are navigating pain, training for an athletic goal, or restarting exercise, our team will guide you.</p>
+              <button className="text-link dark-link" onClick={() => scrollTo("start")}>
+                Speak with our team <ArrowUpRight data-icon="inline-end" />
+              </button>
+            </div>
+          </div>
+          <div className="faq-list">
+            {faqs.map(([q, a]) => (
+              <details className="faq-item reveal" key={q}>
+                <summary>{q}<span>+</span></summary>
+                <p>{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
       <footer className="site-footer"><div><button className="wordmark" onClick={() => scrollTo("top")}>BMF<span>®</span></button><p>Assessment-led fitness,<br />rehabilitation and performance.</p></div><div><b>ASSESS · REBUILD · TRAIN · PERFORM</b><p>© 2026 Biomec Fitness India<br />Soon in Delhi NCR</p></div><div><button onClick={() => scrollTo("assess")}>Assess</button><button onClick={() => scrollTo("train")}>Train + rehab</button><button onClick={() => scrollTo("perform")}>Perform</button><button onClick={() => scrollTo("start")}>Contact</button></div></footer>
     </main>
   )

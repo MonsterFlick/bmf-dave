@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react"
 import { ScrambleTextOnHover } from "@/components/scramble-text"
-import { SplitFlapText, SplitFlapMuteToggle, SplitFlapAudioProvider } from "@/components/split-flap-text"
 import { AnimatedNoise } from "@/components/animated-noise"
 import { BitmapChevron } from "@/components/bitmap-chevron"
 import gsap from "gsap"
@@ -46,14 +45,11 @@ export function HeroSection() {
 
       {/* Main content */}
       <div ref={contentRef} className="flex-1 w-full">
-        <SplitFlapAudioProvider>
-          <div className="relative">
-            <SplitFlapText text="BIOMEC FITNESS" speed={80} />
-            <div className="mt-4">
-              <SplitFlapMuteToggle />
-            </div>
-          </div>
-        </SplitFlapAudioProvider>
+        <div className="relative">
+          <h1 className="font-[var(--font-bebas)] text-[clamp(4rem,10vw,8.5rem)] leading-[0.88] tracking-[-0.02em] text-foreground uppercase">
+            <span>BIOMEC</span> <span className="text-[var(--orange)]">FITNESS</span>
+          </h1>
+        </div>
 
         <h2 className="font-[var(--font-bebas)] text-muted-foreground/60 text-[clamp(1rem,3vw,2rem)] mt-4 tracking-wide">
           Assess · Rebuild · Train · Perform
