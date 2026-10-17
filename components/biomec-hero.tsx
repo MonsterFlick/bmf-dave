@@ -65,7 +65,7 @@ export function BiomecHero({ onBookClick, onExploreClick }: BiomecHeroProps) {
   return (
     <section
       id="top"
-      className="hero-section relative min-h-[100svh] flex flex-col justify-center px-5 sm:px-[6vw] pt-[105px] sm:pt-[130px] pb-[40px] sm:pb-[50px] overflow-hidden select-none bg-[var(--brown)] text-[var(--cream)]"
+      className="hero-section relative min-h-[100svh] flex flex-col justify-center px-5 sm:px-[6vw] pt-[105px] sm:pt-[130px] pb-16 sm:pb-[50px] overflow-hidden select-none bg-[var(--brown)] text-[var(--cream)]"
     >
       {/* Subtle atmospheric ambient glow */}
       <div
@@ -157,23 +157,21 @@ export function BiomecHero({ onBookClick, onExploreClick }: BiomecHeroProps) {
             <span className="absolute -bottom-1.5 -left-1.5 w-3 h-3 border-b-2 border-l-2 border-[var(--orange)] pointer-events-none" />
             <span className="absolute -bottom-1.5 -right-1.5 w-3 h-3 border-b-2 border-r-2 border-[var(--orange)] pointer-events-none" />
 
-            {/* Header: Stage Badge & Credo */}
-            <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-[rgba(235,219,196,0.12)]">
-              <div>
-                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--orange)]">
-                  THE FOUR STAGES
+            {/* Header: Clean, Minimalist & Spacious */}
+            <div className="flex items-center justify-between gap-3 pb-3.5 border-b border-[rgba(235,219,196,0.12)]">
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--orange)] shrink-0" />
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[var(--orange)] font-semibold whitespace-nowrap">
+                  STAGE {current.number} / {current.name}
                 </span>
-                <h3 className="font-[var(--font-bebas)] text-[20px] sm:text-[22px] text-[var(--cream)] m-0 leading-none mt-1">
-                  {current.number} / {current.headline}
-                </h3>
               </div>
-              <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#8e7465]">
-                {activeIdx + 1} of 4
+              <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.1em] sm:tracking-[0.14em] uppercase text-[#9e8675] truncate text-right">
+                {current.headline}
               </span>
             </div>
 
-            {/* Stage Selector Buttons: Clean, Editorial, Athletic */}
-            <div className="mt-3 sm:mt-4 grid grid-cols-4 gap-1 p-1 bg-[rgba(15,10,8,0.7)] border border-[rgba(235,219,196,0.08)]">
+            {/* Stage Selector Buttons: Generous Gap & Clear Touch Targets */}
+            <div className="mt-4 grid grid-cols-4 gap-2">
               {PILLARS.map((p, idx) => {
                 const isActive = activeIdx === idx
                 return (
@@ -183,21 +181,21 @@ export function BiomecHero({ onBookClick, onExploreClick }: BiomecHeroProps) {
                       setIsAutoPlaying(false)
                       setActiveIdx(idx)
                     }}
-                    className={`py-2 px-1 text-center font-mono uppercase transition-all duration-200 cursor-pointer ${
+                    className={`py-2 sm:py-2.5 px-1 sm:px-2 text-center font-mono uppercase transition-all duration-200 border cursor-pointer ${
                       isActive
-                        ? "bg-[var(--orange)] text-[var(--brown)] font-bold shadow-sm"
-                        : "text-[#9d8574] hover:text-[var(--cream)] hover:bg-[rgba(235,219,196,0.06)]"
+                        ? "bg-[var(--orange)] text-[var(--brown)] border-[var(--orange)] font-bold shadow-md"
+                        : "bg-[rgba(15,10,8,0.5)] border-[rgba(235,219,196,0.1)] text-[#9d8574] hover:text-[var(--cream)] hover:border-[rgba(235,219,196,0.25)]"
                     }`}
                   >
-                    <span className="block text-[8px] opacity-75">{p.number}</span>
-                    <span className="block text-[9px] sm:text-[10px] tracking-[0.06em]">{p.name}</span>
+                    <span className="block text-[9px] sm:text-[10px] opacity-80 leading-none">{p.number}</span>
+                    <span className="block text-[10px] sm:text-[11px] font-semibold tracking-[0.06em] mt-1 leading-none">{p.name}</span>
                   </button>
                 )
               })}
             </div>
 
-            {/* Editorial Athletic Photograph Showcase */}
-            <div className="relative mt-3 sm:mt-4 h-[210px] sm:h-[260px] w-full overflow-hidden border border-[rgba(235,219,196,0.12)] bg-[#1c120e]">
+            {/* Clean Athletic Photograph Showcase */}
+            <div className="relative mt-4 h-[190px] sm:h-[240px] w-full overflow-hidden border border-[rgba(235,219,196,0.12)] bg-[#1c120e]">
               {PILLARS.map((p, idx) => (
                 <div
                   key={p.number}
@@ -210,49 +208,33 @@ export function BiomecHero({ onBookClick, onExploreClick }: BiomecHeroProps) {
                     alt={p.alt}
                     className="w-full h-full object-cover object-center filter contrast-[1.05]"
                   />
-                  {/* Subtle dark warm overlay gradient */}
+                  {/* Subtle dark warm vignette */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       background:
-                        "linear-gradient(to top, rgba(25,16,13,0.92) 0%, rgba(25,16,13,0.2) 60%, transparent 100%)",
+                        "linear-gradient(to top, rgba(25,16,13,0.7) 0%, transparent 60%)",
                     }}
                   />
-                  {/* In-image caption tag */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono tracking-[0.14em] uppercase text-[var(--cream)]">
-                    <span className="bg-[rgba(25,16,13,0.85)] px-2.5 py-1 border border-[rgba(235,219,196,0.15)] text-[var(--orange)]">
-                      {p.focus}
-                    </span>
-                  </div>
                 </div>
               ))}
             </div>
 
-            {/* Stage Human Description */}
+            {/* Stage Human Description with Generous Breathing Room */}
             <div className="mt-4 pt-4 border-t border-[rgba(235,219,196,0.12)]">
-              <p className="text-[13px] md:text-[14px] text-[#cfb8a6] leading-[1.55] m-0 font-sans">
+              <p className="text-[14px] sm:text-[15px] text-[#cfb8a6] leading-[1.7] m-0 font-sans">
                 {current.summary}
               </p>
-            </div>
-
-            {/* Brand Credo Stamp */}
-            <div className="mt-4 pt-3 border-t border-[rgba(235,219,196,0.08)] flex items-center justify-between">
-              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#8b7262]">
-                PHILOSOPHY
-              </span>
-              <span className="font-[var(--font-bebas)] text-[15px] tracking-[0.08em] text-[var(--cream)]">
-                CAN ONLY CHANGE WHAT WE MEASURE
-              </span>
             </div>
           </div>
         </div>
 
       </div>
 
-      {/* Hero Foot Coordinates */}
-      <div className="hero-foot relative z-10 w-full max-w-[1400px] mx-auto mt-12 pt-6 border-t border-[rgba(235,219,196,0.12)] flex justify-between items-center text-[#8e7465] font-mono text-[9px] tracking-[0.16em] uppercase">
+      {/* Hero Foot Coordinates - Clean editorial footer visible on tablet/desktop */}
+      <div className="hero-foot hidden sm:flex relative z-10 w-full max-w-[1400px] mx-auto mt-14 sm:mt-16 pt-6 border-t border-[rgba(235,219,196,0.12)] justify-between items-center text-[#8e7465] font-mono text-[9px] tracking-[0.16em] uppercase">
         <span className="hover:text-[var(--cream)] transition-colors">01 — 06 / SYSTEM OVERVIEW</span>
-        <span className="hidden sm:inline-block text-[var(--orange)]">
+        <span className="text-[var(--orange)]">
           ↓ SCROLL TO EXPLORE
         </span>
         <span>DELHI NCR / 2026</span>
